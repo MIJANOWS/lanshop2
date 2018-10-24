@@ -1,0 +1,21 @@
+<div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Podsumowanie zamówienia</h5>
+      <p class="card-text">Zamawiasz 0 produktów</p>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let item of order.items" class="list-group-item">
+          {{item.quantity}} x {{item.product.title}}
+          <div class="float-right">
+            {{item.totalPrice | currency:'PLN ':true}}
+          </div>
+        </li>
+        <li class="list-group-item font-weight-bold">
+          Razem
+          <div class="float-right">
+              {{cart.totalPrice | currency:'PLN ':true}}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">Nowy produkt</a>
+</p>
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Wyszukaj...">
+</p>
+
+
+<table class="table table-striped"[mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="5"> 
+    <thead>
+        <tr>
+            <th>
+                <mfDefaultSorter by="title">Tytuł</mfDefaultSorter>
+            </th>
+       
+            <th>
+                    <mfDefaultSorter by="price">Cena</mfDefaultSorter>
+            </th>
+        
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of mf.data">
+            <td>{{p.title}}</td>
+            <td>
+                
+            {{p.price | currency:'PLN ':false}}
+                
+            </td>
+            
+            <td>
+                <a [routerLink]="['/admin/products/',p.key]">Edycja</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colsoan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+

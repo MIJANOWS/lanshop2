@@ -1,0 +1,53 @@
+<h1>Zarządzaj zamówieniami</h1>
+
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Wyszukaj...">
+</p>
+
+<table class="table table-striped"[mfData]="filteredOrders" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th>
+                <mfDefaultSorter by="shipping.name">Klient</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="key">Numer zamówienia</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="datePlaced">Data</mfDefaultSorter>
+            </th>
+        
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of mf.data">
+            <td>{{p.shipping.name}}</td>
+            <td>{{p.key}}</td>
+            <td>{{p.datePlaced | date }}               
+            </td>
+            
+            <td>
+                <a [routerLink]="['/admin/order/',p.key]">Podgląd zamówienia</a>
+            </td>
+
+            <td class="text-danger">
+                <a (click)="delete(p.key)">Usuń zamówienie</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colsoan="1" >
+              <p calss="text-center">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]" ></mfBootstrapPaginator>
+              </p>
+                
+            </td>
+        </tr>
+    </tfoot>
+</table>
