@@ -40,21 +40,15 @@ export class OrderService {
     return this.db.object('/orders/'+orderId).update(order); 
   }
 
-  getOrder(orderId){
-    //const order = this.db.object('/orders/'+orderId).snapshotChanges().pipe(
-      //map((action: any)=>{
-       // const key = action.key;
-       // const items = action.payload.val().items;
-       // const datePlaced = action.payload.val().datePlaced;
-       // const shipping = action.payload.val().shipping;
-       // const userId = action.payload.val().userId;
-      //  return new Order(userId,shipping,items,userId);
-     // })
-   // );
+  async getOrder(orderId){
+   // this.productRef = this.db.list('/orders/'+orderId);
+   // return this.order$ = this.productRef.snapshotChanges().map(changes =>{ 
+   //   return changes.map(c=>({
+    //    key: c.payload.key, ...c.payload.val()
+    //  }));
+    //});
 
-
-    //return order;
-    return this.db.object('/orders/'+orderId).snapshotChanges();
+    return  this.db.object('/orders/'+orderId).snapshotChanges();
   }
 
 
